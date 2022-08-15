@@ -1,2 +1,2 @@
 # hyprland-dots
-Personal Hyprland configs
+(WIP)

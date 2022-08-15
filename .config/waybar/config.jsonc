@@ -1,0 +1,125 @@
+{
+   "position": "top", 
+   "height": 10,
+   "modules-center": ["wlr/workspaces","battery", "tray", "custom/notification", "custom/media", "network", "custom/updates", "pulseaudio", "custom/date", "clock"],
+	"wlr/workspaces": {
+		"disable-scroll": true,
+		"all-outputs": true,
+   "on-click": "activate",
+		"format": "{icon}",
+   "persistent_workspaces": {
+      "1": [],
+      "2": [],
+      "3": [],
+      "4": [],
+      "5": [],
+      "6": [],
+      "7": [],
+      "8": [],
+      "9": [],
+      "10": []
+	},
+   "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "3",
+      "4": "4",
+      "5": "5",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "default": "x",
+      "active": "●"
+      }
+     },
+
+    "battery": {
+        "states": {
+            "warning": 30,
+            "critical": 15
+        },
+        "format": "{capacity}% {icon}",
+        "format-charging": "{capacity}% ",
+        "format-plugged": "{capacity}% ",
+        "format-alt": "{time} {icon}",
+        "format-full": "",
+        "format-icons": ["", "", "", "", ""]
+    },
+  "tray": {
+    "icon-size": 13,
+    "spacing": 10
+  },
+  "custom/media": {
+        "format": "{icon} {}",
+        "max-length": 40,
+        "format-icons": {
+            "spotify": " ",
+            "default": " "
+        },
+        "escape": true,
+        "exec": "$HOME/.config/waybar/scroll_spotify_status.sh"
+    },
+	"custom/date": {
+    "format": "  {}",
+		"interval": 3600,
+		"exec": "$HOME/.config/waybar/waybar-date.sh"
+	},
+  "custom/notification": {
+    "tooltip": false,
+    "format": "{icon}",
+    "format-icons": {
+      "notification": " <span foreground='red'><sup></sup></span>",
+      "none": " ",
+      "dnd-notification": " <span foreground='red'><sup></sup></span>",
+      "dnd-none": " "
+    },
+    "return-type": "json",
+    "exec-if": "which swaync-client",
+    "exec": "swaync-client -swb",
+    "on-click": "swaync-client -t -sw",
+    "on-click-right": "swaync-client -d -sw",
+    "escape": true
+  },
+	"clock": {
+		"format": "  {:%H:%M} ",
+    "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
+	},
+	"network": {
+        	"format-wifi": "  {essid}",
+        	"format-ethernet": " NoOneDetected",
+        	"format-linked": "{ifname} (No IP) ",
+        	"format-disconnected": "󰤮 Disconnected",
+		"tooltip-format-wifi": "Signal Strenght: {signalStrength}% | Down Speed: {bandwidthDownBits}, Up Speed: {bandwidthUpBits}"
+	},
+	"custom/updates": {
+        "interval": 120,
+        "return-type": "string",
+        "exec": "~/.config/waybar/modules/updates.sh",
+        "tooltip": false,
+		"on-click":"setsid -f wezterm start paru -Syyu"
+		//"on-click":"setsid -f foot -e paru -Syyu"
+    },
+    "custom/downloads": {
+        "interval": 600,
+        "return-type": "string",
+        "exec": "~/.config/waybar/modules/downloads.py",
+        "tooltip": false,
+		"on-click":"xdg-open https://github.com/xelphlinux/xelph-iso"
+    },"pulseaudio": {
+		"format": "{icon}  {volume}%",
+        	"format-muted": "ﱝ Muted",
+                "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+                "scroll-step": 5,
+        	"format-icons": {
+            	"headphone": "",
+            	"hands-free": "",
+            	"headset": "",
+            	"phone": "",
+            	"portable": "",
+            	"car": "",
+            	"default": ["", "", ""]
+        }
+    }
+}
